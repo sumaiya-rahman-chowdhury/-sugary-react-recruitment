@@ -44,5 +44,39 @@ This app uses a modular structure to implement login and token handling.
 
 ---
 
+### 📊 Dashboard Module
+
+Displays a paginated list of materials with infinite scroll behavior, only accessible when the user is authenticated.
+
+#### 📁 File Overview
+
+* **`api/fetchMaterials.js`**
+  Encapsulates logic to fetch materials from the API using base64-encoded filters:
+
+  * `fetchMaterials({ pageParam })` — Returns paginated data with `Materials`, `hasMore`, and `nextPage`.
+
+* **`pages/DashboardMaterials.jsx`**
+  Renders the list of materials and implements lazy loading using `@tanstack/react-query` and `react-intersection-observer`:
+
+  * Uses `useInfiniteQuery()` to fetch data incrementally.
+  * Uses `useInView()` to detect scroll and trigger `fetchNextPage()`.
+  * Maps over paginated data to render the full list of materials.
+  * Automatically loads more content as user scrolls.
+
+#### ⚙️ Features
+
+* If the user is **logged in**, the Dashboard is shown.
+* The Dashboard fetches a **list of materials** with support for:
+
+  * Pagination (20 items per page)
+  * Lazy loading (via intersection observer)
+* Smooth **infinite scroll** experience without manual page navigation.
+
+> This setup decouples fetching logic from the UI and leverages modern React tooling (TanStack Query) for a clean, scalable data flow.
+
+---
+
+
+
 
 
