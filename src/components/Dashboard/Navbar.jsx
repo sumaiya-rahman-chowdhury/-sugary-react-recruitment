@@ -1,5 +1,5 @@
 import React from "react";
-import { Package, User, LogOut,TableOfContents } from "lucide-react";
+import { Package, User, LogOut, TableOfContents } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -63,7 +63,7 @@ export const Sidebar = () => {
 };
 
 export const Topbar = () => {
-  const { logoutUser } = useAuth();
+  const { logoutUser, auth } = useAuth();
 
   return (
     <div>
@@ -83,7 +83,7 @@ export const Topbar = () => {
               >
                 <Avatar className="h-8 w-8 border-2 border-purple-100 hover:border-purple-300 transition-colors">
                   <AvatarImage
-                    src="https://github.com/shadcn.png"
+                    src={`https://d1wh1xji6f82aw.cloudfront.net/${auth?.User.Avatar}`}
                     alt="User profile"
                   />
                   <AvatarFallback className="bg-purple-100 text-purple-700 font-medium">
@@ -99,7 +99,9 @@ export const Topbar = () => {
             >
               <DropdownMenuItem className="cursor-pointer hover:bg-purple-50">
                 <User className="mr-2 h-4 w-4 text-purple-500" />
-                <span>Profile</span>
+                <span>
+                  <Link to={`/profile`}>Profile</Link>
+                </span>
               </DropdownMenuItem>
               <DropdownMenuItem
                 className="cursor-pointer text-red-600 hover:bg-red-50 focus:text-red-600"
