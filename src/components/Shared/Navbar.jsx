@@ -16,7 +16,7 @@ const Navbar = () => {
     { name: "Home", icon: Home, href: "/" },
     { name: "Profile", icon: Package, href: "/profile" },
     { name: "Users", icon: Users, href: "/" },
-    { name: "Settings", icon: Settings, href: "/" },
+    { name: "Dashboard", icon: Settings, href: "/dashboard" },
   ];
   return (
     <header className="bg-white border-b shadow-sm px-4 py-3 sticky top-0 z-50">
