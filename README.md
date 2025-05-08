@@ -62,7 +62,7 @@ Displays a paginated list of materials with infinite scroll behavior, only acces
   Renders the list of materials and implements lazy loading using `@tanstack/react-query` and `react-intersection-observer`:
 
   * Uses `useInfiniteQuery()` to fetch data incrementally.
-  * Uses `useInView()` to detect scroll and trigger `fetchNextPage()`.
+  * Uses `useInView()` to detect scroll and trigger `fetchNextPage()` from react-intersection-observer.
   * Maps over paginated data to render the full list of materials.
   * Automatically loads more content as user scrolls.
 
