@@ -76,7 +76,9 @@ Displays a paginated list of materials with infinite scroll behavior, only acces
 
 ---
 
+### 🖥️ UI & Dashboard Design
 
+The dashboard features a clean and modern interface with a white background and subtle purple accents. It includes responsive, card-based layouts and data tables for key insights such as top products and top customers. The design emphasizes clarity and usability, with intuitive navigation, consistent typography, and hover effects for interactivity. Components are built using Tailwind CSS and shadcn/ui, ensuring a polished and accessible user experience across devices.For charts used ApexCharts . 
 
 
 
