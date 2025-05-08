@@ -24,15 +24,5 @@ export const ErrorDisplay = ({ error, onRetry }) => (
         </button>
       </div>
     </div>
-    
-    {/* Optional debug details for development */}
-    {process.env.NODE_ENV === 'development' && (
-      <details className="mt-4 text-sm text-purple-600">
-        <summary className="cursor-pointer">Technical details</summary>
-        <pre className="mt-2 p-2 bg-purple-50 rounded overflow-x-auto">
-          {JSON.stringify(error, null, 2)}
-        </pre>
-      </details>
-    )}
   </div>
 );

@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {
   Menu,
-  X,
   Home,
   Package,
   Users,

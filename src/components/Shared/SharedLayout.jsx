@@ -10,7 +10,7 @@ const SharedLayout = () => {
       <main className="flex justify-center  min-h-screen items-center">
         <Outlet />
       </main>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

@@ -16,8 +16,6 @@ function App() {
           <Route path="/profile" element={<Profile />} />
         </Route>
       </Route>
-      {/*  */}
-      {/*  */}
       {/* Dashboard Layout */}
       <Route element={<PrivateRoute />}>
         <Route path="/dashboard" element={<DashboardLayout />}>
@@ -26,9 +24,6 @@ function App() {
           <Route path="/dashboard/overview" element={<OverView/>} />
         </Route>
       </Route>
-      {/* <Route element={<PrivateRoute />}>
-        <Route path="/profile" element={<Profile/>} />
-      </Route> */}
     </Routes>
   );
 }

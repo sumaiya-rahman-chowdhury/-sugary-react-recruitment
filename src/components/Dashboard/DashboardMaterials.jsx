@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { fetchMaterials } from "../../api/fetchMaterials";
 import { useInView } from "react-intersection-observer";
 import MaterialCard from "./Materials/Card";
-import { AlertTriangle, Hourglass, Loader, RefreshCcw } from "lucide-react";
+import { Hourglass, Loader } from "lucide-react";
 import LoadingMaterials from "../Loading/LoadingMaterials";
 import { ErrorDisplay } from "../Error/ErrorDisplay";
 
