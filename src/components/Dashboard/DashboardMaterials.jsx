@@ -1,7 +1,11 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import React, { useEffect } from "react";
 import { fetchMaterials } from "../../api/fetchMaterials";
 import { useInView } from "react-intersection-observer";
+import MaterialCard from "./Materials/Card";
+import { AlertTriangle, Hourglass, Loader, RefreshCcw } from "lucide-react";
+import LoadingMaterials from "../Loading/LoadingMaterials";
+import { ErrorDisplay } from "../Error/ErrorDisplay";
 
 function DashboardMaterials() {
   const {
@@ -11,6 +15,7 @@ function DashboardMaterials() {
     isFetchingNextPage,
     isLoading,
     error,
+    refetch,
   } = useInfiniteQuery({
     queryKey: ["materials"],
     queryFn: fetchMaterials,
@@ -22,44 +27,41 @@ function DashboardMaterials() {
     threshold: 0,
     triggerOnce: false,
   });
-  
+
   useEffect(() => {
     if (inView && hasNextPage && !isFetchingNextPage) {
       fetchNextPage();
     }
   }, [inView, hasNextPage, isFetchingNextPage]);
   const allMaterials = data?.pages.flatMap((page) => page.materials) || [];
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
+
+  if (isLoading) return <LoadingMaterials />;
+  if (error) return <ErrorDisplay error={error} onRetry={() => refetch()} />;
   console.log(allMaterials);
   return (
     <div>
-      DashboardMaterials:
       <div>
-        <h1>Dashboard</h1>
-
-        <div className="materials-list">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-6">
           {allMaterials.map((material) => (
-            <div key={material.Id} className="material-item">
-              <img
-                src={`https://d1wh1xji6f82aw.cloudfront.net/${material.CoverPhoto}`}
-                alt={material.Title}
-                width={200}
-                height={200}
-              />
-              <h3>{material.Title}</h3>
-              <p>{material.BrandName}</p>
-              <p>Price: ${material.SalesPriceInUsd}</p>
-            </div>
+            <MaterialCard key={material.Id} material={material}></MaterialCard>
           ))}
         </div>
-
-        {isLoading && <p>Loading materials...</p>}
-        {isFetchingNextPage && <p>Loading more...</p>}
-        {error && <p>Error loading materials.</p>}
-
-        <div ref={ref} style={{ height: "1px" }} />
-        {isFetchingNextPage && <p>Loading more...</p>}
+        <div>
+          {isLoading && (
+            <div className="flex items-center justify-center gap-2 text-purple-500 py-8">
+              <Loader className="h-5 w-5 animate-spin" />
+              <p className="font-medium">Loading materials...</p>
+            </div>
+          )}
+          {isFetchingNextPage && (
+            <div className="flex items-center justify-center gap-2 text-purple-500 py-4">
+              <Hourglass className="h-5 w-5 animate-pulse" />
+              <p className="font-medium">Loading more delights...</p>
+            </div>
+          )}
+          {/* {error && <p>Error loading materials.</p>} */}
+          <div ref={ref} style={{ height: "10px" }} />
+        </div>
       </div>
     </div>
   );
